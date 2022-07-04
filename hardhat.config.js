@@ -2,6 +2,8 @@ require("@nomiclabs/hardhat-waffle");
 require("dotenv").config()
 require("@nomiclabs/hardhat-etherscan");
 require("./tasks/blockNumber")
+require("hardhat-gas-reporter")
+require("solidity-coverage")
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -30,5 +32,12 @@ module.exports = {
   },
   etherscan:{
     apiKey:process.env.ETHERSCAN_API
+  },
+  gasReporter:{
+    enabled:true,
+    outputFile:"gas-report.txt",
+    noColors:true,
+    currency:"USD",
+    coinmarketcap:process.env.COIN_MARKET_CAP_API
   }
 };
